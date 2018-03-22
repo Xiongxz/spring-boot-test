@@ -30,7 +30,7 @@ public class SpringBootController {
 
 	@RequestMapping(value={"/selectById"})
 	public UserInfo selectById(HttpServletRequest request){
-		System.out.println("根据ID查询测试！端口号："+port+"请求userId:"+request.getParameter("id"));
+		System.out.println("根据ID查询测试sss！端口号："+port+"请求userId:"+request.getParameter("id"));
 		int userId = Integer.parseInt(request.getParameter("id"));
 		UserInfo user = this.sbs.selectByPrimaryKey(userId);
 		return user;
