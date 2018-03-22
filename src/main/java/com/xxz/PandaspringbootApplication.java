@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * springboot启动类，从上往下扫描，所以在包目录顶层
- * 否则注入失败
+ * 否则注入失败sss
  * @author Administrator
  *
  */
