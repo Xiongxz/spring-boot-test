@@ -21,11 +21,16 @@ public class SpringBootController {
 
 	@Autowired
 	private SpringBootService sbs;
-	
+
 	@RequestMapping(value={"/selectAll"})
 	public List<userInformation> springboottests(){
 		System.out.println("成功进入！端口号："+port);
 		return sbs.queryAll();
+	}
+
+	@RequestMapping(value={"/login"})
+	public String index(){
+		return "/index";
 	}
 
 	@RequestMapping(value={"/selectById"})
