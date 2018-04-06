@@ -12,4 +12,6 @@ public interface SpringBootService {
 	List<userInformation> queryAll();
 
 	UserInfo selectByPrimaryKey(Integer userId);
+
+	void save(userInformation ui);
 }

@@ -28,4 +28,9 @@ public class SpringBootServiceImpl implements SpringBootService {
 		return uim.selectByPrimaryKey(userId);
 	}
 
+	@Override
+	public void save(userInformation ui) {
+		sdd.save(ui);
+	}
+
 }
