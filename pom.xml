@@ -26,7 +26,7 @@
 
 	<dependencies>
 
-		<!--数据持久层，yml配置可自动生成表-->
+		<!--spring-data-jpa，yml配置可自动生成表-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -88,6 +88,7 @@
 
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -126,6 +127,7 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+
 		</plugins>
 	</build>
 </project>

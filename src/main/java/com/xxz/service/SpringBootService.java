@@ -1,17 +1,16 @@
 package com.xxz.service;
 
-import java.util.List;
-
 import com.xxz.model.UserInfo;
+import com.xxz.model.userInformation;
 import org.springframework.stereotype.Service;
 
-import com.xxz.model.userInformation;
+import java.util.List;
 @Service
 public interface SpringBootService {
 	
 	List<userInformation> queryAll();
 
-	UserInfo selectByPrimaryKey(Integer userId);
+	UserInfo selectByPrimaryKey(Long userId);
 
-	void save(userInformation ui);
+	void save(UserInfo ui);
 }

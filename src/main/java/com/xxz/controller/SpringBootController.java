@@ -1,25 +1,24 @@
 package com.xxz.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import com.xxz.model.UserInfo;
 import com.xxz.model.userInformation;
+import com.xxz.util.DateUtils;
+import com.xxz.util.SidWorker;
 import com.xxz.util.Utils;
 import com.xxz.util.ZYJSONResult;
-import com.xxz.util.UploadFile;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.xxz.service.SpringBootService;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -46,9 +45,27 @@ public class SpringBootController {
 	@RequestMapping(value={"/selectById"})
 	public UserInfo selectById(HttpServletRequest request){
 		System.out.println("根据ID查询测试sss！端口号："+port+"请求userId:"+request.getParameter("id"));
-		int userId = Integer.parseInt(request.getParameter("id"));
+		Long userId =Long.parseLong(request.getParameter("id"));
 		UserInfo user = this.sbs.selectByPrimaryKey(userId);
 		return user;
+	}
+	@RequestMapping(value = {"/saveUserInfo"},method = RequestMethod.POST)
+	public ZYJSONResult saveUserInfo(@RequestParam(name = "userage",required = false) Integer userage,@RequestParam(name = "username") String username) throws ParseException {
+		UserInfo ui = new UserInfo();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		System.out.println("生成的ID： " + SidWorker.nextSid());
+		System.out.println("当前时间：" + DateUtils.getCurrentDateTime());
+		ui.setUserId(SidWorker.nextSid());
+		ui.setUserAge(userage);
+		ui.setUserName(username);
+		ui.setStartDate(df.parse(DateUtils.getCurrentDateTime()));
+		try {
+			sbs.save(ui);
+		}catch (Exception e){
+			//e.printStackTrace();
+			return ZYJSONResult.errorException("程序异常！");
+		}
+		return ZYJSONResult.ok(ui);
 	}
 
 	/*@RequestMapping(value={"/uploadFile"},method = RequestMethod.POST)
@@ -95,8 +112,8 @@ public class SpringBootController {
             System.out.println("文件大小：" + file.getSize());
             try {
                 Utils.uploadFile(file.getBytes(), filePath, newName);
-                userInformation ui = new userInformation();
-                ui.setUserId((int) new Date().getTime());
+                UserInfo ui = new UserInfo();
+                ui.setUserId(new Date().getTime());
                 ui.setUserName(filePath + newName);
                 ui.setUserAge(10);
                 sbs.save(ui);

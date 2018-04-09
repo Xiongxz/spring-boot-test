@@ -1,13 +1,7 @@
 package com.xxz.util;
 
-import com.xxz.model.userInformation;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.Date;
 import java.util.UUID;
 
 public class Utils {

@@ -24,13 +24,13 @@ public class SpringBootServiceImpl implements SpringBootService {
 	}
 
 	@Override
-	public UserInfo selectByPrimaryKey(Integer userId) {
+	public UserInfo selectByPrimaryKey(Long userId) {
 		return uim.selectByPrimaryKey(userId);
 	}
 
 	@Override
-	public void save(userInformation ui) {
-		sdd.save(ui);
+	public void save(UserInfo ui) {
+		uim.insert(ui);
 	}
 
 }

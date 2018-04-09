@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
     <!-- 配置mysql 驱动jar包路径.用了绝对路径 -->
-    <classPathEntry location="E:\maven\repo\mysql\mysql-connector-java\5.1.24\mysql-connector-java-5.1.24.jar" />
+    <classPathEntry location="D:\maven\repo\mysql\mysql-connector-java\5.1.24\mysql-connector-java-5.1.24.jar" />
 
     <context id="mysql" targetRuntime="MyBatis3">
         <!-- 防止生成的代码中有很多注释，加入下面的配置控制 -->
@@ -32,7 +32,7 @@
         </javaModelGenerator>
 
         <!-- sql mapper 映射配置文件 -->
-        <sqlMapGenerator targetPackage="com.xxz.mapper"  targetProject="src\main\java">
+        <sqlMapGenerator targetPackage="mappers"  targetProject="src\main\resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
