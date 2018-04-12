@@ -1,26 +1,27 @@
 package com.xxz.controller;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
 import com.xxz.model.UserInfo;
 import com.xxz.model.userInformation;
+import com.xxz.service.SpringBootService;
 import com.xxz.util.DateUtils;
 import com.xxz.util.SidWorker;
 import com.xxz.util.Utils;
 import com.xxz.util.ZYJSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
-
-import com.xxz.service.SpringBootService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 @RestController
 public class SpringBootController {
@@ -29,12 +30,12 @@ public class SpringBootController {
 	private Integer port;
 
 	@Autowired
-	private SpringBootService sbs;
+	private SpringBootService springBootService;
 
 	@RequestMapping(value={"/selectAll"})
-	public List<userInformation> springboottests(){
+	public List<userInformation> selectAll(){
 		System.out.println("成功进入！端口号："+port);
-		return sbs.queryAll();
+		return springBootService.queryAll();
 	}
 
 	@RequestMapping(value={"/login"})
@@ -46,7 +47,7 @@ public class SpringBootController {
 	public UserInfo selectById(HttpServletRequest request){
 		System.out.println("根据ID查询测试sss！端口号："+port+"请求userId:"+request.getParameter("id"));
 		Long userId =Long.parseLong(request.getParameter("id"));
-		UserInfo user = this.sbs.selectByPrimaryKey(userId);
+		UserInfo user = this.springBootService.selectByPrimaryKey(userId);
 		return user;
 	}
 	@RequestMapping(value = {"/saveUserInfo"},method = RequestMethod.POST)
@@ -60,7 +61,7 @@ public class SpringBootController {
 		ui.setUserName(username);
 		ui.setStartDate(df.parse(DateUtils.getCurrentDateTime()));
 		try {
-			sbs.save(ui);
+            springBootService.save(ui);
 		}catch (Exception e){
 			//e.printStackTrace();
 			return ZYJSONResult.errorException("程序异常！");
@@ -116,7 +117,7 @@ public class SpringBootController {
                 ui.setUserId(new Date().getTime());
                 ui.setUserName(filePath + newName);
                 ui.setUserAge(10);
-                sbs.save(ui);
+                springBootService.save(ui);
                 System.out.println("成功！");
                 return ZYJSONResult.mok("imgurl", filePath.toString() + newName);
             } catch (Exception e) {
