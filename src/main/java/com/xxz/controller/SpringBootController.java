@@ -24,57 +24,55 @@ import java.util.List;
 @RestController
 public class SpringBootController {
 
-    @Value("${server.port}")
-    private Integer port;
+	@Value("${server.port}")
+	private Integer port;
 
-    @Autowired
-    private SpringBootService springBootService;
+	@Autowired
+	private SpringBootService springBootService;
 
-    @RequestMapping(value = {"/selectAll"})
-    public List<userInformation> selectAll() {
-        System.out.println("成功进入！端口号：" + port);
-        return springBootService.queryAll();
-    }
+	@RequestMapping(value={"/selectAll"})
+	public List<userInformation> selectAll(){
+		System.out.println("成功进入！端口号："+port);
+		return springBootService.queryAll();
+	}
 
-    @PostMapping(value = {"/logins"})
-    public ModelAndView userLogin() {
-        ModelAndView mav = new ModelAndView();
-        System.out.println("拦截器测试");
-        mav.setViewName("index");
-        return mav;
-    }
+	@PostMapping(value={"/logins"})
+	public ModelAndView userLogin(){
+		ModelAndView  mav=new ModelAndView();
+		System.out.println("拦截器测试");
+		mav.setViewName("index");
+		return mav;
+	}
 
-    @RequestMapping(value = {"/selectById"})
-    public UserInfo selectById(HttpServletRequest request) {
-        System.out.println("根据ID查询测试sss！端口号：" + port + "请求userId:" + request.getParameter("id"));
-        Long userId = Long.parseLong(request.getParameter("id"));
-        UserInfo user = this.springBootService.selectByPrimaryKey(userId);
-        return user;
-    }
-
-    @RequestMapping(value = {"/saveUserInfo"}, method = RequestMethod.POST)
-    public ZYJSONResult saveUserInfo(@RequestParam(name = "userage", required = false) Integer userage, @RequestParam(name = "username") String username) throws ParseException {
-        UserInfo ui = new UserInfo();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        System.out.println("生成的ID： " + SidWorker.nextSid());
-        System.out.println("当前时间：" + DateUtils.getCurrentDateTime());
-        ui.setUserId(SidWorker.nextSid());
-        ui.setUserAge(userage);
-        ui.setUserName(username);
-        ui.setStartDate(df.parse(DateUtils.getCurrentDateTime()));
-        try {
+	@RequestMapping(value={"/selectById"})
+	public UserInfo selectById(HttpServletRequest request){
+		System.out.println("根据ID查询测试sss！端口号："+port+"请求userId:"+request.getParameter("id"));
+		Long userId =Long.parseLong(request.getParameter("id"));
+		UserInfo user = this.springBootService.selectByPrimaryKey(userId);
+		return user;
+	}
+	@RequestMapping(value = {"/saveUserInfo"},method = RequestMethod.POST)
+	public ZYJSONResult saveUserInfo(@RequestParam(name = "userage",required = false) Integer userage,@RequestParam(name = "username") String username) throws ParseException {
+		UserInfo ui = new UserInfo();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		System.out.println("生成的ID： " + SidWorker.nextSid());
+		System.out.println("当前时间：" + DateUtils.getCurrentDateTime());
+		ui.setUserId(SidWorker.nextSid());
+		ui.setUserAge(userage);
+		ui.setUserName(username);
+		ui.setStartDate(df.parse(DateUtils.getCurrentDateTime()));
+		try {
             springBootService.save(ui);
-        } catch (Exception e) {
-            //e.printStackTrace();
-            return ZYJSONResult.errorException("程序异常！");
-        }
-        return ZYJSONResult.ok(ui);
-    }
-
-    @PostMapping("/uploadFile")
-    public ZYJSONResult uploadFile(@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request) throws IOException {
-        if (request instanceof MultipartHttpServletRequest && !file.isEmpty() && file.getSize() > 0) {
-            String contentType = file.getContentType();
+		}catch (Exception e){
+			//e.printStackTrace();
+			return ZYJSONResult.errorException("程序异常！");
+		}
+		return ZYJSONResult.ok(ui);
+	}
+    @RequestMapping(value={"/uploadFile"},method = RequestMethod.POST)
+	public ZYJSONResult uploadFile(@RequestParam(value = "file",required = false) MultipartFile file,HttpServletRequest request) throws IOException{
+		if(request instanceof MultipartHttpServletRequest && !file.isEmpty() && file.getSize() > 0) {
+		    String contentType = file.getContentType();
             String fileName = file.getOriginalFilename();
             String newName = Utils.getUUID() + fileName.substring(fileName.indexOf("."), fileName.length());
             String filePath = request.getSession().getServletContext().getRealPath("img/");
@@ -95,8 +93,8 @@ public class SpringBootController {
             } catch (Exception e) {
                 return ZYJSONResult.errorMsg("异常");
             }
-        } else {
-            return ZYJSONResult.errorMsg("文件为空");
-        }
+	}else{
+            return  ZYJSONResult.errorMsg("文件为空");
+    }
     }
 }
