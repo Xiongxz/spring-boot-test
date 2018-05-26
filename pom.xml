@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.xxz</groupId>
-	<artifactId>mavenspringboot</artifactId>
+	<artifactId>spring-boot-test</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>mavenspringboot</name>
+	<name>spring-boot-test</name>
 	<description>Demo project for Spring Boot + MyBatis</description>
 
 	<parent>
@@ -80,8 +80,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<version>2.0.0.RELEASE</version>
-			<optional>true</optional>
 		</dependency>
 
 	</dependencies>

@@ -9,12 +9,10 @@ import com.xxz.util.Utils;
 import com.xxz.util.ZYJSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -38,9 +36,12 @@ public class SpringBootController {
 		return springBootService.queryAll();
 	}
 
-	@RequestMapping(value={"/login"})
-	public String index(){
-		return "index";
+	@PostMapping(value={"/login"})
+	public ModelAndView userLogin(){
+		ModelAndView  mav=new ModelAndView();
+		System.out.println("拦截器测试");
+		mav.setViewName("index");
+		return mav;
 	}
 
 	@RequestMapping(value={"/selectById"})
