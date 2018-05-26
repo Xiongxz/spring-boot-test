@@ -49,5 +49,12 @@ public class Utils {
         return uuid.replaceAll("-", "");
     }
 
-
+    static public String outofnull(String str) {
+        if (str == null) {
+            str = "";
+        } else if (str.toLowerCase().equals("null")) {
+            str = "";
+        }
+        return str.trim();
+    }
 }

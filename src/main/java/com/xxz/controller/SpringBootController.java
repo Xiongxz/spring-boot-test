@@ -36,7 +36,7 @@ public class SpringBootController {
 		return springBootService.queryAll();
 	}
 
-	@PostMapping(value={"/login"})
+	@PostMapping(value={"/logins"})
 	public ModelAndView userLogin(){
 		ModelAndView  mav=new ModelAndView();
 		System.out.println("拦截器测试");

@@ -80,9 +80,17 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
 		</dependency>
 
-	</dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
+        </dependency>
+
+
+    </dependencies>
 
 	<build>
 		<plugins>
@@ -94,7 +102,7 @@
 				<configuration>
 					<!-- 没有该配置，devtools 不生效 -->
 					<fork>true</fork>
-					<!--<addResources>true</addResources>-->
+					<addResources>true</addResources>
 				</configuration>
 			</plugin>
 

@@ -8,13 +8,12 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * springboot启动类，从上往下扫描，所以在包目录顶层
- * 否则注入失败sss
+ * 否则注入失败
  *
- * @author Administrator
+ * @author xxz
  */
 @SpringBootApplication
 @MapperScan("com.xxz.dao")
-//@Configuration
 public class PandaspringbootApplication {
     public static void main(String[] args) {
         SpringApplication.run(PandaspringbootApplication.class, args);
