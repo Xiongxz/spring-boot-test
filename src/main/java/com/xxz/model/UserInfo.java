@@ -14,7 +14,10 @@ public class UserInfo {
 
     private Integer userAge;
 
-    private String userName;
+    private String userName="admin";
+
+    private String passWord="1";
+
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",locale = "zh",timezone = "GMT+8")
     private Date startDate;
 
@@ -24,6 +27,14 @@ public class UserInfo {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
     public Integer getUserAge() {

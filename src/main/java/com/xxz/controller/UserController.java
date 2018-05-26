@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonNumberFormatVisitor;
 import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.xxz.configconsts.ConfigConsts;
+import com.xxz.model.UserInfo;
 import com.xxz.util.Utils;
 import com.xxz.util.ZYJSONResult;
 import org.slf4j.Logger;
@@ -19,6 +21,7 @@ import javax.rmi.CORBA.Util;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @Auther: xxz
@@ -30,26 +33,36 @@ public class UserController {
 
     public static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 
-    @GetMapping("/login")
+    @RequestMapping("/login.html")
     public String login() {
         return "login";
     }
 
-    @GetMapping("/userlogin")
-    public void userLogin(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password, HttpServletRequest request, HttpServletResponse response) {
-        String sendRedirectUrl="index";//登录后要重定向的URL
+    @RequestMapping("/index.html")
+    public String index() {
+        return "index";
+    }
+
+    @PostMapping("/userlogin")
+    @ResponseBody
+    public ModelAndView userLogin(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password, HttpServletRequest request, HttpServletResponse response) {
+        String sendRedirectUrl = "redirect:/index.html";//登录后要重定向的URL
+        HttpSession session = request.getSession();
+        ModelAndView mav=new ModelAndView();
+        UserInfo user = new UserInfo();
         try {
-            LOG.info("username: {},password: {}", username, password);
-            if (!username.equals("admin") | !password.equals("1")) {
-                request.setAttribute("errors", "登陆失败,请输入正确的账号或密码！");
-                sendRedirectUrl = "login.html";
-                RequestDispatcher dispatcher = request.getRequestDispatcher(sendRedirectUrl);
-                dispatcher.forward(request, response);
-                return ;
+            LOG.info("UserName: {} and PassWord: {}", username, password);
+            if (!username.equals(user.getUserName()) | !password.equals(user.getPassWord())) {
+                mav.addObject("loginvalidate", "登陆失败,请输入正确的账号或密码！");
+                sendRedirectUrl = "redirect:/login.html";
+                mav.setViewName(sendRedirectUrl);
             }
-            response.sendRedirect(sendRedirectUrl);
+            session.setAttribute(ConfigConsts.USER_SESSION, user);
+            mav.setViewName(sendRedirectUrl);
+            return mav;
         } catch (Exception e) {
-            request.setAttribute("errors", "System error");
+            mav.addObject("loginvalidate", "System error");
         }
+        return mav;
     }
 }
