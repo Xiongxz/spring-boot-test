@@ -44,7 +44,6 @@ public class UserController {
     }
 
     @PostMapping("/userlogin")
-    @ResponseBody
     public ModelAndView userLogin(@RequestParam(value = "username", required = true) String username, @RequestParam(value = "password", required = true) String password, HttpServletRequest request, HttpServletResponse response) {
         String sendRedirectUrl = "redirect:/index.html";//登录后要重定向的URL
         HttpSession session = request.getSession();
