@@ -1,4 +1,4 @@
-package com.xxz.dao;
+package com.xxz.mapper;
 
 import com.xxz.model.UserInfo;
 

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xxz.dao.UserInfoMapper" >
+<mapper namespace="com.xxz.mapper.UserInfoMapper" >
   <resultMap id="BaseResultMap" type="com.xxz.model.UserInfo" >
     <id column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="pass_word" property="passWord" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
     <result column="user_age" property="userAge" jdbcType="INTEGER" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="start_date" property="startDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    user_id, user_age, user_name, start_date
+    user_id, pass_word, start_date, user_age, user_name
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -21,10 +22,10 @@
     where user_id = #{userId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.xxz.model.UserInfo" >
-    insert into user_info (user_id, user_age, user_name, 
-      start_date)
-    values (#{userId,jdbcType=BIGINT}, #{userAge,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
-      #{startDate,jdbcType=TIMESTAMP})
+    insert into user_info (user_id, pass_word, start_date, 
+      user_age, user_name)
+    values (#{userId,jdbcType=BIGINT}, #{passWord,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, 
+      #{userAge,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xxz.model.UserInfo" >
     insert into user_info
@@ -32,19 +33,28 @@
       <if test="userId != null" >
         user_id,
       </if>
+      <if test="passWord != null" >
+        pass_word,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
       <if test="userAge != null" >
         user_age,
       </if>
       <if test="userName != null" >
         user_name,
       </if>
-      <if test="startDate != null" >
-        start_date,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
         #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="passWord != null" >
+        #{passWord,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
       </if>
       <if test="userAge != null" >
         #{userAge,jdbcType=INTEGER},
@@ -52,31 +62,32 @@
       <if test="userName != null" >
         #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="startDate != null" >
-        #{startDate,jdbcType=TIMESTAMP},
-      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.xxz.model.UserInfo" >
     update user_info
     <set >
+      <if test="passWord != null" >
+        pass_word = #{passWord,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
       <if test="userAge != null" >
         user_age = #{userAge,jdbcType=INTEGER},
       </if>
       <if test="userName != null" >
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="startDate != null" >
-        start_date = #{startDate,jdbcType=TIMESTAMP},
-      </if>
     </set>
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xxz.model.UserInfo" >
     update user_info
-    set user_age = #{userAge,jdbcType=INTEGER},
-      user_name = #{userName,jdbcType=VARCHAR},
-      start_date = #{startDate,jdbcType=TIMESTAMP}
+    set pass_word = #{passWord,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      user_age = #{userAge,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
 </mapper>

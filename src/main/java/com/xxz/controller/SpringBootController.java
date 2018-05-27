@@ -21,6 +21,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Controller测试类
+ */
 @RestController
 public class SpringBootController {
 
@@ -52,12 +55,15 @@ public class SpringBootController {
 		return user;
 	}
 	@RequestMapping(value = {"/saveUserInfo"},method = RequestMethod.POST)
-	public ZYJSONResult saveUserInfo(@RequestParam(name = "userage",required = false) Integer userage,@RequestParam(name = "username") String username) throws ParseException {
+	public ZYJSONResult saveUserInfo(@RequestParam(name = "userage",required = false) Integer userage,
+									 @RequestParam(name = "username") String username,
+									 @RequestParam(name = "password") String password) throws ParseException {
 		UserInfo ui = new UserInfo();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		System.out.println("生成的ID： " + SidWorker.nextSid());
 		System.out.println("当前时间：" + DateUtils.getCurrentDateTime());
 		ui.setUserId(SidWorker.nextSid());
+		ui.setPassWord(password);
 		ui.setUserAge(userage);
 		ui.setUserName(username);
 		ui.setStartDate(df.parse(DateUtils.getCurrentDateTime()));

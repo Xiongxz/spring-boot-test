@@ -1,27 +1,40 @@
+#端口和项目根路径
 server:
   port: 8080
   servlet:
     context-path: /springboot/
+
+#配置数据源和阿里巴巴连接池默认为com.zaxxer.hikari.util.DriverDataSource
 spring:
  datasource:
-   driver-class-name: com.mysql.jdbc.Driver
-   url: jdbc:mysql://127.0.0.1:3306/springboot
+   #驱动自动配置
+   #driver-class-name: com.mysql.jdbc.Driver
+   url: jdbc:mysql://127.0.0.1:3306/spring-boot-test
    username: root
    password: 123456
+   type: com.alibaba.druid.pool.DruidDataSource
+
+#spring boot jpa,可根据model创建相应的数据库表
  jpa:
    hibernate:
      ddl-auto: update
    show-sql: true
+
 #设置上传文件大小
  servlet:
    multipart:
      max-file-size: 10MB
      max-request-size: 10MB
+
+#设置静态资源后缀
  mvc:
    view:
      prefix:
      suffix: .html
-#mybatis配置
+
+#mybatis配置，扫描的包，mapper.xml，控制台输出执行的sql
 mybatis:
    typeAliasesPackage: com.xxz.model
    mapper-locations: classpath:mappers/*.xml
+   configuration:
+     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

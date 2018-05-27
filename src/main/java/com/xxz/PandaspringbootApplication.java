@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @author xxz
  */
 @SpringBootApplication
-@MapperScan("com.xxz.dao")
+@MapperScan(basePackages = {"com.xxz.mapper","com.xxz.dao"})
 public class PandaspringbootApplication {
     public static void main(String[] args) {
         SpringApplication.run(PandaspringbootApplication.class, args);

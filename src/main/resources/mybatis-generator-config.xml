@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
     <!-- 配置mysql 驱动jar包路径.用了绝对路径 -->
-    <classPathEntry location="D:\maven\repo\mysql\mysql-connector-java\5.1.24\mysql-connector-java-5.1.24.jar" />
+    <classPathEntry location="E:\maven\repo\mysql\mysql-connector-java\5.1.24\mysql-connector-java-5.1.24.jar" />
 
     <context id="mysql" targetRuntime="MyBatis3">
         <!-- 防止生成的代码中有很多注释，加入下面的配置控制 -->
@@ -16,7 +16,7 @@
 
         <!-- 数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/springboot?useUnicode=true&amp;characterEncoding=UTF-8"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/spring-boot-test?useUnicode=true&amp;characterEncoding=UTF-8"
                         userId="root"
                         password="123456">
         </jdbcConnection>
@@ -37,7 +37,7 @@
         </sqlMapGenerator>
 
         <!-- mybatis3中的mapper接口 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.xxz.dao"  targetProject="src\main\java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.xxz.mapper"  targetProject="src\main\java">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
