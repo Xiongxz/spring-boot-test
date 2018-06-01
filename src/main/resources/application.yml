@@ -1,6 +1,6 @@
 #端口和项目根路径
 server:
-  port: 8080
+  port: 8989
   servlet:
     context-path: /springboot/
 
