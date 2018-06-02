@@ -2,7 +2,7 @@ package com.xxz.model;
 
 import java.util.Date;
 
-public class UserInfo {
+public class UserInfo implements Comparable<UserInfo>{
     private Long userId;
 
     private String passWord;
@@ -12,6 +12,17 @@ public class UserInfo {
     private Integer userAge;
 
     private String userName;
+
+    public UserInfo() {
+    }
+
+    public UserInfo(Long userId, String passWord, Date startDate, Integer userAge, String userName) {
+        this.userId = userId;
+        this.passWord = passWord;
+        this.startDate = startDate;
+        this.userAge = userAge;
+        this.userName = userName;
+    }
 
     public Long getUserId() {
         return userId;
@@ -51,5 +62,10 @@ public class UserInfo {
 
     public void setUserName(String userName) {
         this.userName = userName == null ? null : userName.trim();
+    }
+
+    @Override
+    public int compareTo(UserInfo o) {
+        return 0;
     }
 }

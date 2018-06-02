@@ -1,54 +1,69 @@
 package com.xxz.util;
 
+import com.alibaba.fastjson.JSON;
+import com.xxz.model.UserInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.UUID;
 
 public class Utils {
+    /**
+     * 日志
+     */
+    public static final Logger LOG = LoggerFactory.getLogger(Utils.class);
 
-    /*public static String uploadFile(byte[] file,String fileName,String filePath) throws Exception {
-        if(request instanceof MultipartHttpServletRequest){
-            try {
-            MultipartFile file =  ((MultipartHttpServletRequest) request).getFile("file");
-            String filePath = request.getSession().getServletContext().getRealPath("img/");
-            String fileName = file.getOriginalFilename();
-            String newName = getUUID()+fileName.substring(fileName.indexOf("."),fileName.length());
-            File targetFile = new File(filePath);
-            if(!file.isEmpty()){
-                System.out.println("文件路径: " + filePath);
-                System.out.println("文件名称：" + fileName);
-                System.out.println("文件新名称：" + newName );
-                if(!targetFile.exists()){
-                    targetFile.mkdirs();
-                }
-                FileOutputStream out = new FileOutputStream(filePath+newName);
-                out.write(file.getBytes());
-                out.flush();
-                out.close();
-                return filePath+newName;
-            }
-        } catch (Exception e) {
-                e.printStackTrace();}
-        }
-        return "";
-    }*/
-    public static void uploadFile(byte[] file,String filePath,String fileName) throws Exception {
+    /**
+     * 文件上传
+     *
+     * @param file
+     * @param filePath
+     * @param fileName
+     * @throws Exception
+     */
+    public static void uploadFile(byte[] file, String filePath, String fileName) throws Exception {
         File targetFile = new File(filePath);
-        if(!targetFile.exists()){
+        if (!targetFile.exists()) {
             targetFile.mkdirs();
         }
-        FileOutputStream out = new FileOutputStream(filePath+fileName);
+        FileOutputStream out = new FileOutputStream(filePath + fileName);
         out.write(file);
         out.flush();
         out.close();
     }
 
-    public static String getUUID(){
+    /**
+     * 泛型类测试
+     * @param o
+     * @param <T>
+     * @return
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     */
+    public static <T> T getObjectTest(T o) throws IllegalAccessException, InstantiationException {
+        LOG.info("Utils对象类型：{}", o);
+        return  o;
+    }
+
+    /**
+     * 获取UUID
+     *
+     * @return
+     */
+    public static String getUUID() {
         String uuid = UUID.randomUUID().toString().toLowerCase();
         //去掉“-”符号
         return uuid.replaceAll("-", "");
     }
 
+    /**
+     * 去null
+     *
+     * @param str
+     * @return
+     */
     static public String outofnull(String str) {
         if (str == null) {
             str = "";
