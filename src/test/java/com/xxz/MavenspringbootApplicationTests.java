@@ -1,9 +1,7 @@
 package com.xxz;
 
 import com.xxz.model.UserInfo;
-import com.xxz.util.SidWorker;
 import com.xxz.util.Utils;
-import javafx.scene.input.DataFormat;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -19,15 +17,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -45,10 +39,10 @@ public class MavenspringbootApplicationTests {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         map.add("userId", "2018060313261224601");
-        map.add("userName","测试");
-        map.add("passWord","123456789");
-        map.add("userAge","18");
-        map.add("startDate",new Date().toString());
+        map.add("userName", "测试");
+        map.add("passWord", "123456789");
+        map.add("userAge", "18");
+        map.add("startDate", new Date().toString());
         /*
          perform：执行一个RequestBuilder请求，会自动执行SpringMVC的流程并映射到相应的控制器执行处理；
          andExpect：添加ResultMatcher验证规则，验证控制器执行完成后结果是否正确；
