@@ -1,5 +1,7 @@
 package com.xxz.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -11,7 +13,7 @@ public class UserInfo {
 
     @Column(name = "pass_word")
     private String passWord;
-
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "start_date")
     private Date startDate;
 
