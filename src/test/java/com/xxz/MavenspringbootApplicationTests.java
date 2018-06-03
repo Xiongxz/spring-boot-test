@@ -1,6 +1,7 @@
 package com.xxz;
 
 import com.xxz.model.UserInfo;
+import com.xxz.util.SidWorker;
 import com.xxz.util.Utils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,7 +39,7 @@ public class MavenspringbootApplicationTests {
     public void userInfoTest() throws Exception {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        map.add("userId", "2018060313261224601");
+        map.add("userId", String.valueOf(SidWorker.nextSid()));
         map.add("userName", "测试");
         map.add("passWord", "123456789");
         map.add("userAge", "18");
@@ -49,7 +50,7 @@ public class MavenspringbootApplicationTests {
          andDo：添加ResultHandler结果处理器，比如调试时打印结果到控制台；
          andReturn：最后返回相应的MvcResult；然后进行自定义验证/进行下一步的异步处理；
          */
-        mockMvc.perform(MockMvcRequestBuilders.put("/updateuserselective")//构造请求
+        mockMvc.perform(MockMvcRequestBuilders.post("/saveuser")//构造请求
                 .accept(MediaType.APPLICATION_JSON_UTF8).params(map))
                 .andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print())//添加一个结果处理器

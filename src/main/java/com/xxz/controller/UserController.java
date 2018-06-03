@@ -63,49 +63,18 @@ public class UserController {
 
     @PostMapping("/saveuser")
     @ResponseBody
-    public ZYJSONResult saveUser(@ModelAttribute UserInfo userInfo) {
-        LOG.info("进入接口 参数 {} ", userInfo.getUserName());
-        //assert userInfo == null :"userInfo is null !!!";
-        if (userInfo.getUserId() != null) {
-            LOG.info("run saveuser !!!");
+    public ZYJSONResult saveUser(@ModelAttribute UserInfo userInfo){
+        if(userInfo.getUserId()!=null){
             return ZYJSONResult.ok(this.userServiceImpl.saveUser(userInfo));
-        } else {
-            return ZYJSONResult.errorMsg("userInfo is null");
+        }else{
+            return ZYJSONResult.errorMsg("saveUser error");
         }
     }
 
-    @PostMapping("/saveuserselective")
+    @GetMapping("/getuserall")
     @ResponseBody
-    public ZYJSONResult saveUserSelective(@ModelAttribute UserInfo userInfo) {
-        LOG.info("进入接口 参数 {} ", userInfo.getUserName());
-        if (userInfo.getUserId() != null) {
-            LOG.info("run saveUserSelective !!!");
-            return ZYJSONResult.ok(this.userServiceImpl.saveUserSelective(userInfo));
-        } else {
-            return ZYJSONResult.errorMsg("userInfo is null");
-        }
-    }
-
-    @PutMapping("/updateuser")
-    @ResponseBody
-    public ZYJSONResult updateUser(@ModelAttribute UserInfo userInfo){
-        LOG.info("进入接口 参数 {} ", userInfo.getUserName());
-        if (userInfo.getUserId() != null) {
-            LOG.info("run updateUser !!!");
-            return ZYJSONResult.ok(this.userServiceImpl.updateById(userInfo));
-        } else {
-            return ZYJSONResult.errorMsg("userInfo is null");
-        }
-    }
-    @PutMapping("/updateuserselective")
-    @ResponseBody
-    public ZYJSONResult updateUserSelective(@ModelAttribute UserInfo userInfo){
-        LOG.info("进入接口 参数 {} ", userInfo.getUserName());
-        if (userInfo.getUserId() != null) {
-            LOG.info("run updateUser !!!");
-            return ZYJSONResult.ok(this.userServiceImpl.updateByIdSelective(userInfo));
-        } else {
-            return ZYJSONResult.errorMsg("userInfo is null");
-        }
+    public ZYJSONResult getUserAll() {
+        LOG.info("通用Mapper查询测试");
+        return ZYJSONResult.ok(this.userServiceImpl.selectAll());
     }
 }

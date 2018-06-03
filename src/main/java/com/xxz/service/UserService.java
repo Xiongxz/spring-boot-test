@@ -12,17 +12,7 @@ import java.util.List;
  */
 @Service
 public interface UserService {
-    int deleteUserById(Long userId);
+    List<UserInfo> selectAll();
 
     int saveUser(UserInfo userInfo);
-
-    int saveUserSelective(UserInfo userInfo);
-
-    List<UserInfo> selectUserAll();
-
-    UserInfo selectUserById(Long userId);
-
-    int updateByIdSelective(UserInfo userInfo);
-
-    int updateById(UserInfo userInfo);
 }

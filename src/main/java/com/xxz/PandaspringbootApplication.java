@@ -1,10 +1,8 @@
 package com.xxz;
 
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * springboot启动类，从上往下扫描，所以在包目录顶层
@@ -13,7 +11,9 @@ import org.springframework.context.annotation.Configuration;
  * @author xxz
  */
 @SpringBootApplication
-@MapperScan(basePackages = {"com.xxz.mapper","com.xxz.dao"})
+//@MapperScan(basePackages = {"com.xxz.mapper","com.xxz.dao"})
+//使用通用mapper注解
+@tk.mybatis.spring.annotation.MapperScan(basePackages = {"com.xxz.mapper"})
 public class PandaspringbootApplication {
     public static void main(String[] args) {
         SpringApplication.run(PandaspringbootApplication.class, args);

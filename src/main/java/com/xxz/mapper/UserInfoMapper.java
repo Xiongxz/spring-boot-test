@@ -1,23 +1,12 @@
 package com.xxz.mapper;
 
 import com.xxz.model.UserInfo;
-import org.springframework.stereotype.Repository;
+import tk.mybatis.mapper.annotation.RegisterMapper;
+import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
-@Repository
-public interface UserInfoMapper {
-    int deleteByPrimaryKey(Long userId);
+@RegisterMapper
+public interface UserInfoMapper extends Mapper<UserInfo> {
 
-    int insert(UserInfo record);
-
-    int insertSelective(UserInfo record);
-
-    List<UserInfo> selectUserAll();
-
-    UserInfo selectByPrimaryKey(Long userId);
-
-    int updateByPrimaryKeySelective(UserInfo record);
-
-    int updateByPrimaryKey(UserInfo record);
 }

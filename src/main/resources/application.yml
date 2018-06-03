@@ -33,8 +33,14 @@ spring:
      suffix: .html
 
 #mybatis配置，扫描的包，mapper.xml，控制台输出执行的sql
-mybatis:
-   typeAliasesPackage: com.xxz.model
-   mapper-locations: classpath:mappers/*.xml
-   configuration:
-     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#mybatis:
+   #typeAliasesPackage: com.xxz.model
+   #mapper-locations: classpath:mappers/*.xml
+   #configuration:
+     #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#通用mapper
+#mapper:
+  #mappers:
+    #- tk.mybatis.mapper.common.Mapper
+  #not-empty: true
+
