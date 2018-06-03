@@ -37,6 +37,4 @@ public class UserServiceImpl implements UserService {
     public int saveUser(UserInfo userInfo) {
         return this.userInfoMapper.insert(userInfo);
     }
-
-
 }

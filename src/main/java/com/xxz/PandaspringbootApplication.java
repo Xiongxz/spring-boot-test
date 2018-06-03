@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author xxz
  */
 @SpringBootApplication
-//@MapperScan(basePackages = {"com.xxz.mapper","com.xxz.dao"})
 //使用通用mapper注解
 @tk.mybatis.spring.annotation.MapperScan(basePackages = {"com.xxz.mapper"})
 public class PandaspringbootApplication {

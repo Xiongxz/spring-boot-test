@@ -1,48 +1,58 @@
 package com.xxz.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-
-@Entity
+@Table(name = "user_information")
 public class userInformation {
-	@Id
-	@GeneratedValue
-	private Integer userId;
-	
-	private String userName;
-	
-	private Integer userAge;
+    @Id
+    @Column(name = "user_id")
+    private Integer userId;
 
-	public userInformation() {
-	}
+    @Column(name = "user_age")
+    private Integer userAge;
 
-	public Integer getUserId() {
-		return userId;
-	}
+    @Column(name = "user_name")
+    private String userName;
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+    /**
+     * @return user_id
+     */
+    public Integer getUserId() {
+        return userId;
+    }
 
-	public String getUserName() {
-		return userName;
-	}
+    /**
+     * @param userId
+     */
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    /**
+     * @return user_age
+     */
+    public Integer getUserAge() {
+        return userAge;
+    }
 
-	public Integer getUserAge() {
-		return userAge;
-	}
+    /**
+     * @param userAge
+     */
+    public void setUserAge(Integer userAge) {
+        this.userAge = userAge;
+    }
 
-	public void setUserAge(Integer userAge) {
-		this.userAge = userAge;
-	}
+    /**
+     * @return user_name
+     */
+    public String getUserName() {
+        return userName;
+    }
 
-	
-	
-	
+    /**
+     * @param userName
+     */
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
+    }
 }

@@ -3,18 +3,19 @@ package com.xxz.controller;
 import com.xxz.configconsts.ConfigConsts;
 import com.xxz.model.UserInfo;
 import com.xxz.serviceimpl.UserServiceImpl;
+import com.xxz.util.SidWorker;
 import com.xxz.util.ZYJSONResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 /**
  * @Auther: xxz
@@ -63,12 +64,10 @@ public class UserController {
 
     @PostMapping("/saveuser")
     @ResponseBody
-    public ZYJSONResult saveUser(@ModelAttribute UserInfo userInfo){
-        if(userInfo.getUserId()!=null){
-            return ZYJSONResult.ok(this.userServiceImpl.saveUser(userInfo));
-        }else{
-            return ZYJSONResult.errorMsg("saveUser error");
-        }
+    public ZYJSONResult saveUser(@ModelAttribute UserInfo userInfo) {
+        userInfo.setUserId(SidWorker.nextSid());
+        userInfo.setStartDate(new Date());
+        return ZYJSONResult.ok(this.userServiceImpl.saveUser(userInfo));
     }
 
     @GetMapping("/getuserall")

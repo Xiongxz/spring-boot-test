@@ -7,7 +7,13 @@
     <!-- 配置mysql 驱动jar包路径.用了绝对路径 -->
     <classPathEntry location="E:\maven\repo\mysql\mysql-connector-java\5.1.24\mysql-connector-java-5.1.24.jar" />
 
-    <context id="mysql" targetRuntime="MyBatis3">
+    <context id="mysql" targetRuntime="MyBatis3Simple">
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <property name="caseSensitive" value="true"/>
+        </plugin>
+
         <!-- 防止生成的代码中有很多注释，加入下面的配置控制 -->
         <commentGenerator>
             <property name="suppressAllComments" value="true" />
@@ -42,7 +48,12 @@
         </javaClientGenerator>
 
         <!-- 数据表进行生成操作 schema:相当于库名; tableName:表名; domainObjectName:对应的DO -->
-        <table schema="springboot" tableName="user_info" domainObjectName="UserInfo"
+        <table schema="spring-boot-test" tableName="user_info" domainObjectName="UserInfo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+        <table schema="spring-boot-test" tableName="user_information" domainObjectName="userInformation"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
