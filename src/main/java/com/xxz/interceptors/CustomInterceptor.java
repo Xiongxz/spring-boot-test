@@ -71,7 +71,11 @@ public class CustomInterceptor implements WebMvcConfigurer {
      **/
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowCredentials(true)
+                .allowedMethods("GET","POST","DELETE","PUT","PATCH","OPTION")
+                .maxAge(3600);
     }
 
     /**
