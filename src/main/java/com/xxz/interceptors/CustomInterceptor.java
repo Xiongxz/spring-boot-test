@@ -24,7 +24,7 @@ public class CustomInterceptor implements WebMvcConfigurer {
      **/
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new IndexInterceptor()).addPathPatterns("/index.html");
+        registry.addInterceptor(new IndexInterceptor()).addPathPatterns("/index.html").excludePathPatterns("/fileupload.html");
     }
 
     @Override
