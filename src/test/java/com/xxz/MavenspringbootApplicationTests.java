@@ -18,10 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -82,5 +79,30 @@ public class MavenspringbootApplicationTests {
         set.add(new UserInfo(65L, "adminpwd", new Date(), 12, "熊相正"));
         set.add(new UserInfo(65L, "adminpwd", new Date(), 12, "熊相正"));
         System.out.println(set);
+    }
+
+    @Test
+    public void randomNumberTest() {
+        Integer[] subjectId = {50, 51, 52, 53, 54, 55, 56};
+        StringBuffer subjectIdsGroup = new StringBuffer("");
+        String iterationValue="";
+        for (int a = 0; a < 100; a++) {
+            subjectIdsGroup.setLength(0);//清空
+            for (int i = 0; i < 3; i++) {
+                while (true) {
+                    iterationValue = String.valueOf(subjectId[Utils.randomNumber(0, 6)]);
+                    if (subjectIdsGroup.indexOf(iterationValue) != -1) {//包含
+                        continue;
+                    } else {
+                        subjectIdsGroup.append(iterationValue);
+                        break;
+                    }
+                }
+                if (i < 2) {
+                    subjectIdsGroup.append(",");
+                }
+            }
+            System.out.println("随机取选课ID：" + a + "----" + subjectIdsGroup);
+        }
     }
 }

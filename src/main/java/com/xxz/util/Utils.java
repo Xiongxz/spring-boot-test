@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Random;
 import java.util.UUID;
 
 public class Utils {
@@ -69,5 +70,16 @@ public class Utils {
             str = "";
         }
         return str.trim();
+    }
+
+    /**
+     * 生成固定大小随机数
+     * @param minNumber 最大数
+     * @param maxNumber 最小数
+     * @return 返回随机数 公式（ 最大取值-最小取值+1）
+     */
+    public synchronized static int randomNumber(int minNumber,int maxNumber){
+        Random rand = new Random();
+        return rand.nextInt(maxNumber - minNumber + 1) + minNumber;
     }
 }
