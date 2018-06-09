@@ -32,7 +32,7 @@ public class MavenspringbootApplicationTests {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
+    //@Test
     public void userInfoTest() throws Exception {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
         //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -81,7 +81,7 @@ public class MavenspringbootApplicationTests {
         System.out.println(set);
     }
 
-    @Test
+    //@Test
     public void randomNumberTest() {
         Integer[] subjectId = {50, 51, 52, 53, 54, 55, 56};
         StringBuffer subjectIdsGroup = new StringBuffer("");
@@ -104,5 +104,12 @@ public class MavenspringbootApplicationTests {
             }
             System.out.println("随机取选课ID：" + a + "----" + subjectIdsGroup);
         }
+    }
+
+    @Test
+    public void proportionTest(){
+        String[] str = {"语文","数学","英语","历史","政治","技术","物理"};
+        LOG.info("length {} " ,str.length);
+        LOG.info("比例 {} ",str.length*6*5);
     }
 }

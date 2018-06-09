@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xxz.mapper.MybatistestMapper" >
+  <resultMap id="BaseResultMap" type="com.xxz.model.Mybatistest" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    name
+  </sql>
+  
+  <sql id="condition">
+    <trim prefix="where" prefixOverrides="AND | OR" suffixOverrides="">
+      <if test="id != null and id != '' ">AND id= #{id}</if>
+      <if test="name != null and name != '' ">AND name= #{name}</if>
+    </trim>
+  </sql>
+
+  <!-- 批量插入测试 -->
+  <!--
+  collection：指定要遍历的集合：
+  list类型的参数会特殊处理封装在map中，map的key就叫list
+  item：将当前遍历出的元素赋值给指定的变量
+  separator:每个元素之间的分隔符
+  open：遍历出所有结果拼接一个开始的字符
+  close:遍历出所有结果拼接一个结束的字符
+  index:索引。遍历list的时候是index就是索引，item就是当前值
+  遍历map的时候index表示的就是map的key，item就是map的值
+  #{变量名}就能取出变量的值也就是当前遍历出的元素
+  -->
+  <insert id="batchMybatisTest" parameterType="java.util.List">
+    INSERT INTO mybatistest
+    (<include refid="Base_Column_List"></include>)
+    VALUES
+    <foreach collection="list" item="mybatistest" separator=",">
+      (#{mybatistest.name})
+    </foreach>
+  </insert>
+
+  <select id="selectByIdorName" resultType="com.xxz.model.Mybatistest">
+    SELECT id,name from mybatistest
+    <include refid="condition"></include>
+  </select>
+</mapper>
