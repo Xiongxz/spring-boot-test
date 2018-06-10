@@ -6,6 +6,7 @@ import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -14,9 +15,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @Auther: Administrator
  * @Date: 2018/6/9 0009 23:30
  * @Description: SwaggerConfig
- *
+ * <p>
  * Swagger注解说明：
- *
+ * <p>
  * API 将类标记为Swagger资源
  * ApiImplicitParam 表示API操作中的单个参数
  * ApiImplicitParams 一个允许多个ApiImplicitParam对象列表的包装器
@@ -37,15 +38,22 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
+                //api路径
                 .apis(RequestHandlerSelectors.basePackage("com.xxz.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
+        //构建api文档详细函数信息
         return new ApiInfoBuilder()
+                //页面标题
                 .title("spring-boot-test 测试文档")
+                //作者信息
+                .contact(new Contact("Xiongxz", "https://github.com/Xiongxz", "654962327@qq.com"))
+                //api文档描述信息
                 .description("spring-boot-test demo")
+                //版本信息
                 .version("1.0")
                 .build();
     }

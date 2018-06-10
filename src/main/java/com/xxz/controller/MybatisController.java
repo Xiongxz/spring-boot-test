@@ -21,7 +21,7 @@ import java.util.List;
  * @Description: 用于Mybatis测试
  */
 @RestController
-@Api(tags = "测试Swagger")
+@Api(value = "测试Swagger",tags = "测试Swagger")
 public class MybatisController {
     public static final Logger LOG = LoggerFactory.getLogger(MybatisController.class);
 

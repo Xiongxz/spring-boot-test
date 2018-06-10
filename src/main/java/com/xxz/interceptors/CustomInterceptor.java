@@ -63,7 +63,7 @@ public class CustomInterceptor implements WebMvcConfigurer {
      **/
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/v2/api-docs/**").addResourceLocations("classpath:/static/apidocs/**");
+        registry.addResourceHandler("/static/apidocs/**").addResourceLocations("classpath:/static/apidocs/**");
     }
 
     /**

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Date: 2018/6/5 0005 23:10
  * @Description: 文件上传与下载
  */
+@ApiIgnore("暂不引用")
 @RestController
 public class FileUploadController {
     public static final Logger LOG = LoggerFactory.getLogger(FileUploadController.class);

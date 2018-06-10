@@ -5,6 +5,7 @@ import com.xxz.model.UserInfo;
 import com.xxz.serviceimpl.UserServiceImpl;
 import com.xxz.util.SidWorker;
 import com.xxz.util.ZYJSONResult;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import java.util.Date;
  * @Date: 2018/5/26 0026 14:11
  * @Description:login interceptor variable
  */
+@Api(value = "用户接口",tags = "用户接口",description = "包含用户登录，CRUD")
 @Controller
 public class UserController {
 

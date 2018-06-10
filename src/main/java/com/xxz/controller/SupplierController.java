@@ -6,6 +6,8 @@ package com.xxz.controller;/**
 
 import com.xxz.model.Supplier;
 import com.xxz.serviceimpl.SupplierServiceImpl;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +28,14 @@ import java.util.Map;
  * @author: xxz
  * @create: 2018-06-04 13:41
  **/
+@Api(value = "查询测试")
 @RestController
 public class SupplierController {
     private static final Logger LOG = LoggerFactory.getLogger(SupplierController.class);
 
     @Autowired
     private SupplierServiceImpl supplierServiceImpl;
-
+    @ApiOperation(value = "添加供应商",tags = "")
     @PostMapping("/addsupplier")
     public void saveSupplier(){
         LOG.info("run");
