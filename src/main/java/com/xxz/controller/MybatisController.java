@@ -31,7 +31,7 @@ public class MybatisController {
     @ApiOperation(value="通用mapper保存单个数据测试", notes = "添加测试")
     @PostMapping("/savemybatistest")
     public ZYJSONResult saveMybatisTest(){
-        return ZYJSONResult.ok(mybatisTestService.saveMybatisTest(new Mybatistest(null,"熊宝宝")));
+        return ZYJSONResult.ok(mybatisTestService.saveMybatisTest(new Mybatistest(null,"熊相正")));
     }
 
     @ApiOperation(value="批量插入测试", notes = "批量测试")
