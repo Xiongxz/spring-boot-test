@@ -123,6 +123,7 @@ public class MavenspringbootApplicationTests {
 
         listInteger.sort((Integer::compare));
         listInteger.forEach(x -> System.out.println(x));
+        //listInteger.forEach(x -> lambdaTest());
         listInteger.forEach(System.out::println);
     }
 }
