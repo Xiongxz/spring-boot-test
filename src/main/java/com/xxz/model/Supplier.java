@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 @Table(name = "supplier")
 public class Supplier extends PaginAtion{
+    @Id
     private Integer id;
 
     private String name;

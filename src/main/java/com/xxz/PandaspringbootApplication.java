@@ -2,7 +2,6 @@ package com.xxz;
 
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import tk.mybatis.spring.annotation.MapperScan;
 
@@ -13,8 +12,8 @@ import tk.mybatis.spring.annotation.MapperScan;
  * @author xxz
  */
 @SpringBootApplication
-//使用通用mapper注解
-@MapperScan("com.xxz.mapper")
+@MapperScan("com.xxz.mapper")//使用通用mapper注解
+
 public class PandaspringbootApplication {
     public static void main(String[] args) {
         SpringApplication.run(PandaspringbootApplication.class, args);

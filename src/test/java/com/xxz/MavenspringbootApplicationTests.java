@@ -108,8 +108,21 @@ public class MavenspringbootApplicationTests {
 
     @Test
     public void proportionTest(){
-        String[] str = {"语文","数学","英语","历史","政治","技术","物理"};
-        LOG.info("length {} " ,str.length);
-        LOG.info("比例 {} ",str.length*6*5);
+        String[] str = {"物理","化学","生物","政治","历史","地理","技术"};
+        //物理	化学	生物	政治	历史	地理
+        //LOG.info("length {} " ,str.length);
+        //LOG.info("比例 {} ",str.length*6*5);
+    }
+
+    @Test
+    public void lambdaTest(){
+        List<Integer> listInteger =Arrays.asList(2,3,32,33,12,2,1,3,4,4,5,55,5);
+        Integer[] integers =  {1,2,34,543,454,4353,243,22,4,5,6};
+
+        Arrays.stream(integers);
+
+        listInteger.sort((Integer::compare));
+        listInteger.forEach(x -> System.out.println(x));
+        listInteger.forEach(System.out::println);
     }
 }
