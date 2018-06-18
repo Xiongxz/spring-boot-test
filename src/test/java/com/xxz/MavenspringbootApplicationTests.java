@@ -125,39 +125,14 @@ public class MavenspringbootApplicationTests {
     @Test
     public void proportionTest() {
         String[] str = {"物理", "化学", "生物", "政治", "历史", "地理", "技术"};
-        String[] intTemp = {"23", "123", "32", "242"};
+        String[] intTemp = {"1", "2", "3", "4","5","6"};
+        int num = 3;
         //物理	化学	生物	政治	历史	地理
         //LOG.info("length {} " ,str.length);
         //LOG.info("比例 {} ", intTemp.length * 6 * 5 * 4 * 3);
         List<String> list = this.combine(intTemp, 3);
         list.forEach(System.out::println);
-
-
     }
-
-    /**
-     * 求组合数
-     * 从m中取n个组合
-     *
-     * @param m
-     * @param n
-     * @return 组合
-     */
-    private List<Integer> proportionNumberTest(Integer[] m, int n) {
-        int count = 0;
-        List<Integer> listNumber = new ArrayList<>();//总计组合
-        List<Integer> listTemp = new ArrayList<>();//临时
-        if (m.length > 0 && n > 0) {
-            while (true) {
-                for (int i = 0; i < m.length; i++) {
-                    //m[i]+",";
-                }
-            }
-        } else {
-            return null;
-        }
-    }
-
     private List<String> combine(String[] a, int num) {
         List<String> list = new ArrayList<String>();
         StringBuffer sb = new StringBuffer();
@@ -231,7 +206,7 @@ public class MavenspringbootApplicationTests {
     /**
      * lambda测试
      */
-    //@Test
+    @Test
     public void lambdaTest() {
         //List
         List<Integer> listInteger = Arrays.asList(2, 3, 32, 33, 12, 2, 1, 3, 4, 4, 5, 55, 5);
@@ -250,6 +225,11 @@ public class MavenspringbootApplicationTests {
         listInteger.forEach(x -> System.out.println("listInteger : " + x));//迭代
         listString.stream().filter((x) -> x.endsWith("s")).forEach((s) -> System.out.println("包含某个字符串 ：" + s));
         listString.stream().filter((x) -> !x.endsWith("s")).forEach((s) -> System.out.println("排除某个字符串 ：" + s));
+        listString.forEach((x) -> {
+            if(x.endsWith("分")){
+                System.out.println(x);
+            }
+        });
         //listString.forEach(System.out::println);
 
         userInfoList.sort((a, b) -> b.getUserId().compareTo(a.getUserId()));//排序
@@ -258,8 +238,8 @@ public class MavenspringbootApplicationTests {
         int listMax = userInfoList.stream().mapToInt((x) -> x.getUserId().intValue()).max().getAsInt();
         int listMix = userInfoList.stream().mapToInt((x) -> x.getUserId().intValue()).min().getAsInt();
         int listSum = userInfoList.stream().mapToInt((x) -> x.getUserId().intValue()).sum();
-        double listavg = userInfoList.stream().mapToInt((x) -> x.getUserId().intValue()).average().getAsDouble();
-        System.out.println("max : " + listMax + " min : " + listMix + " sum : " + listSum + " avg : " + listavg);
+        double listAvg = userInfoList.stream().mapToInt((x) -> x.getUserId().intValue()).average().getAsDouble();
+        System.out.println("max : " + listMax + " min : " + listMix + " sum : " + listSum + " avg : " + listAvg);
         //listInteger.forEach(x -> lambdaTest());
         //listInteger.forEach(System.out::println);
     }
