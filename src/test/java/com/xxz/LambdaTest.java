@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @Auther: Administrator
@@ -31,6 +32,9 @@ public class LambdaTest {
             map.put(Utils.randomNumber(0, 6), new UserInfo(Long.valueOf(Utils.randomNumber(0, 6)), "123456", new Date(), 12, "测试"));
         }
         listString.forEach(e -> System.out.println(e));
+        //String s = "ss";
+        //String n = "nn";
+        //String d=(s,n) -> System.out.println();
         map.forEach((k, v) -> System.out.println("key : " + k + " value : " + v));
     }
 }
