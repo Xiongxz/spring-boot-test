@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @Auther: Administrator
@@ -25,16 +24,28 @@ public class LambdaTest {
     @Test
     public void lambdaTest() {
         List<String> listString = Arrays.asList("测试1", "测试2", "测试3", "测试4", "测试5", "测试6", "测试7", "测试8");
+        int[] ints = {1, 2, 3, 4, 5};
         List<UserInfo> listUserInfo = new ArrayList<>();
         Map<Integer, Object> map = new HashMap<>();
         for (int i = 0; i < 10; i++) {
             listUserInfo.add(new UserInfo(Long.valueOf(Utils.randomNumber(0, 6)), "123456", new Date(), 12, "测试"));
             map.put(Utils.randomNumber(0, 6), new UserInfo(Long.valueOf(Utils.randomNumber(0, 6)), "123456", new Date(), 12, "测试"));
         }
-        listString.forEach(e -> System.out.println(e));
-        //String s = "ss";
-        //String n = "nn";
-        //String d=(s,n) -> System.out.println();
-        map.forEach((k, v) -> System.out.println("key : " + k + " value : " + v));
+        //listString.forEach(e -> System.out.println(e));
+        //map.forEach((k, v) -> System.out.println("key : " + k + " value : " + v));
+        int[] intArray = new int[]{1, 2, 3, 4, 5, 6};
+        String[] strArray = new String[intArray.length];
+        for (int i = 0; i < strArray.length; i++) {
+            strArray[i] = String.valueOf(intArray[i]);
+        }
+       /* for (String s : strArray) {
+            System.out.println(s);
+        }*/
+        List<String> listtest = Utils.combine(strArray, 3);
+        int num = 0;
+        listtest.sort((x,j) -> x.compareTo(j));
+        listtest.stream()
+                .forEach(x -> System.out.println(x));
+
     }
 }
