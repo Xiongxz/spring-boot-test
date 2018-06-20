@@ -23,6 +23,7 @@ public class LambdaTest {
 
     @Test
     public void lambdaTest() {
+        int selectNumber = 3;
         List<String> listString = Arrays.asList("测试1", "测试2", "测试3", "测试4", "测试5", "测试6", "测试7", "测试8");
         int[] ints = {1, 2, 3, 4, 5};
         List<UserInfo> listUserInfo = new ArrayList<>();
@@ -41,11 +42,24 @@ public class LambdaTest {
        /* for (String s : strArray) {
             System.out.println(s);
         }*/
-        List<String> listtest = Utils.combine(strArray, 3);
-        int num = 0;
-        listtest.sort((x,j) -> x.compareTo(j));
-        listtest.stream()
-                .forEach(x -> System.out.println(x));
 
+        List<String> listtest = Utils.combine(strArray, selectNumber);
+        int num = 0;
+        String with = "3";
+        listtest.sort((x, j) -> x.compareTo(j));
+        listtest.forEach(System.out::println);
+        String l = listtest.stream().filter(x ->x.startsWith(with,x.length())).findAny().orElse("null");
+        //List<String> ll=filters(listtest,"3");
+        System.out.println("该组合人数：" + l);
+        listtest.stream().filter(x -> x.endsWith(with)).forEach(x -> System.out.println(strArray.length + " 选 " + selectNumber + "组合：" + x));
+    }
+
+    public <E> E  filters(List<E> t,String filtersName){
+        return t.stream().filter(d ->String.valueOf(t).indexOf(filtersName)!=-1).findAny().orElse(null);
+    }
+
+
+    public IntSummaryStatistics summaryStatistics(List<Object> t){
+        return t.stream().mapToInt((x) -> Integer.parseInt(x.toString())).summaryStatistics();
     }
 }

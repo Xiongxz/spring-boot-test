@@ -210,7 +210,7 @@ public class MavenspringbootApplicationTests {
     public void lambdaTest() {
         //List
         List<Integer> listInteger = Arrays.asList(2, 3, 32, 33, 12, 2, 1, 3, 4, 4, 5, 55, 5);
-        List<String> listString = Arrays.asList("测试", "haha", "分", "访问", "范围分为", "废物废物", "范围分为范文芳", "方法", "固定", "检验员", "废物s", "23", "qqa");
+        List<String> listString = Arrays.asList("测s试", "haha", "分", "访s问", "范围分为", "废物废物", "范围分为范文芳", "方法", "固定", "检验员", "废物s", "23", "qqa");
         List<UserInfo> userInfoList = new ArrayList<>();
         List<UserInfo> userInfoLists = new ArrayList<>();
         Map<Integer, Object> map = new HashMap<>();
