@@ -28,7 +28,7 @@
   遍历map的时候index表示的就是map的key，item就是map的值
   #{变量名}就能取出变量的值也就是当前遍历出的元素
   -->
-  <insert id="batchMybatisTest" parameterType="java.util.List">
+  <insert id="batchMybatisTest" parameterType="java.util.List" useGeneratedKeys="true">
     INSERT INTO mybatistest
     (<include refid="Base_Column_List"></include>)
     VALUES
@@ -37,6 +37,10 @@
     </foreach>
   </insert>
 
+  <insert id="saveMybatisPoJo" parameterType="com.xxz.model.Mybatistest" useGeneratedKeys="true" keyProperty="id">
+      INSERT INTO mybatistest (name) VALUES (#{name});
+  </insert>
+  
   <select id="selectByIdorName" resultType="com.xxz.model.Mybatistest">
     SELECT id,name from mybatistest
     <include refid="condition"></include>

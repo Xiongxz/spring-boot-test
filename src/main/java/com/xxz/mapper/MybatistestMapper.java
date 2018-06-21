@@ -9,5 +9,7 @@ import java.util.List;
 public interface MybatistestMapper extends Mapper<Mybatistest> {
     int batchMybatisTest(List<Mybatistest> list);
 
+    int saveMybatisPoJo(Mybatistest mybatistest);
+
     List<Mybatistest> selectByIdorName(@Param("id") Integer id,@Param("name") String name);
 }

@@ -34,6 +34,12 @@ public class MybatisController {
         return ZYJSONResult.ok(mybatisTestService.saveMybatisTest(new Mybatistest(null,"熊相正")));
     }
 
+    @ApiOperation(value="保存单个数据测试", notes = "添加测试")
+    @PostMapping("/savemybatispojo")
+    public ZYJSONResult saveMybatisPoJo(){
+        return ZYJSONResult.ok(mybatisTestService.saveMybatisPoJo(new Mybatistest(null,"熊相正")));
+    }
+
     @ApiOperation(value="批量插入测试", notes = "批量测试")
     @PostMapping("/savebatchmybatistest")
     public ZYJSONResult savebatchMybatisTest(){

@@ -14,14 +14,21 @@ import java.util.List;
  * @Description:
  */
 @Service
-public class MybatisTestServiceImpl implements MybatisTestService{
+public class MybatisTestServiceImpl implements MybatisTestService {
     @Autowired
     private MybatistestMapper mybatistestMapper;
 
 
     @Override
     public int saveMybatisTest(Mybatistest mybatistest) {
-       return this.mybatistestMapper.insert(mybatistest);
+        return this.mybatistestMapper.insert(mybatistest);
+    }
+
+    @Override
+    public int saveMybatisPoJo(Mybatistest mybatistest) {
+        int m = mybatistestMapper.saveMybatisPoJo(mybatistest);
+        System.out.println("返回的行数 ： " + m + "对象取主键 ： " + mybatistest.getId());
+        return m;
     }
 
     @Override
@@ -31,7 +38,7 @@ public class MybatisTestServiceImpl implements MybatisTestService{
 
     @Override
     public List<Mybatistest> selectByIdorName(Integer id, String name) {
-        return this.mybatistestMapper.selectByIdorName(id,name);
+        return this.mybatistestMapper.selectByIdorName(id, name);
     }
 
 }

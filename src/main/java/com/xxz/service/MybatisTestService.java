@@ -14,6 +14,8 @@ import java.util.List;
 public interface MybatisTestService {
     int saveMybatisTest(Mybatistest mybatistest);
 
+    int saveMybatisPoJo(Mybatistest mybatistest);
+
     int batchMybatisTest(List<Mybatistest> list);
 
     List<Mybatistest> selectByIdorName(Integer id,String name);
