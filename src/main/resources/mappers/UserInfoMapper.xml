@@ -11,4 +11,12 @@
     <result column="user_age" jdbcType="INTEGER" property="userAge" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
   </resultMap>
+
+  <delete id="deleteUserAll" parameterType="java.util.ArrayList">
+      DELETE FROM user_info WHERE user_id IN
+      <foreach collection="array" open="(" separator="," close=")" index="index" item="id">
+        #{id}
+      </foreach>
+  </delete>
+
 </mapper>

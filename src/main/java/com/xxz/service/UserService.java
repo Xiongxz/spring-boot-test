@@ -13,6 +13,6 @@ import java.util.List;
 @Service
 public interface UserService {
     List<UserInfo> selectAll();
-
+    int deleteUserAll(Long[] id);
     int saveUser(UserInfo userInfo);
 }

@@ -74,6 +74,13 @@ public class UserController {
         return ZYJSONResult.ok(this.userServiceImpl.saveUser(userInfo));
     }
 
+    @DeleteMapping("/deleteuserall")
+    @ResponseBody
+    public ZYJSONResult deleteUserAll(){
+        Long[] id = {2018060321071967000L,2018060321061691900L,2018060321030124300L,2018060321061873700L};
+        return ZYJSONResult.ok(this.userServiceImpl.deleteUserAll(id));
+    }
+
     @GetMapping("/getuserall")
     @ResponseBody
     public ZYJSONResult getUserAll() {

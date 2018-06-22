@@ -34,6 +34,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int deleteUserAll(Long[] id) {
+        return this.userInfoMapper.deleteUserAll(id);
+    }
+
+
+    @Override
     public int saveUser(UserInfo userInfo) {
         return this.userInfoMapper.insert(userInfo);
     }
