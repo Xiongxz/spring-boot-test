@@ -18,8 +18,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -86,10 +86,10 @@ public class MavenspringbootApplicationTests {
     public void dataTest() {
         TreeSet<UserInfo> set = new TreeSet();
         Set sets = new HashSet();
-        set.add(new UserInfo(65L, "adminpwd", new Date(), 12, "熊相正"));
-        set.add(new UserInfo(65L, "adminpwd", new Date(), 12, "熊相正"));
-        set.add(new UserInfo(65L, "adminpwd", new Date(), 12, "熊相正"));
-        set.add(new UserInfo(65L, "adminpwd", new Date(), 12, "熊相正"));
+        set.add(new UserInfo(65L, "adminpwd", new Date(), LocalDateTime.now(), 12, "熊相正"));
+        set.add(new UserInfo(65L, "adminpwd", new Date(), LocalDateTime.now(), 12, "熊相正"));
+        set.add(new UserInfo(65L, "adminpwd", new Date(), LocalDateTime.now(), 12, "熊相正"));
+        set.add(new UserInfo(65L, "adminpwd", new Date(), LocalDateTime.now(), 12, "熊相正"));
         System.out.println(set);
     }
 
@@ -125,7 +125,7 @@ public class MavenspringbootApplicationTests {
     @Test
     public void proportionTest() {
         String[] str = {"物理", "化学", "生物", "政治", "历史", "地理", "技术"};
-        String[] intTemp = {"1", "2", "3", "4","5","6"};
+        String[] intTemp = {"1", "2", "3", "4", "5", "6"};
         int num = 3;
         //物理	化学	生物	政治	历史	地理
         //LOG.info("length {} " ,str.length);
@@ -133,6 +133,7 @@ public class MavenspringbootApplicationTests {
         List<String> list = this.combine(intTemp, 3);
         list.forEach(System.out::println);
     }
+
     private List<String> combine(String[] a, int num) {
         List<String> list = new ArrayList<String>();
         StringBuffer sb = new StringBuffer();
@@ -216,8 +217,8 @@ public class MavenspringbootApplicationTests {
         Map<Integer, Object> map = new HashMap<>();
 
         for (int i = 0; i < 10; i++) {
-            userInfoList.add(new UserInfo(Long.valueOf(Utils.randomNumber(0, 6)), "123456", new Date(), 12, "测试"));
-            map.put(Utils.randomNumber(0, 6), new UserInfo(Long.valueOf(Utils.randomNumber(0, 6)), "123456", new Date(), 12, "测试"));
+            userInfoList.add(new UserInfo(Long.valueOf(Utils.randomNumber(0, 6)), "123456", new Date(), LocalDateTime.now(), 12, "测试"));
+            map.put(Utils.randomNumber(0, 6), new UserInfo(Long.valueOf(Utils.randomNumber(0, 6)), "123456", new Date(), LocalDateTime.now(), 12, "测试"));
         }
         //userInfoLists = userInfoList.stream().collect(Collectors.toList());
         Integer[] integers = {1, 2, 34, 543, 454, 4353, 243, 22, 4, 5, 6};
@@ -226,7 +227,7 @@ public class MavenspringbootApplicationTests {
         listString.stream().filter((x) -> x.endsWith("s")).forEach((s) -> System.out.println("包含某个字符串 ：" + s));
         listString.stream().filter((x) -> !x.endsWith("s")).forEach((s) -> System.out.println("排除某个字符串 ：" + s));
         listString.forEach((x) -> {
-            if(x.endsWith("分")){
+            if (x.endsWith("分")) {
                 System.out.println(x);
             }
         });

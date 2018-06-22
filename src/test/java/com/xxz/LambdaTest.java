@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -29,8 +30,8 @@ public class LambdaTest {
         List<UserInfo> listUserInfo = new ArrayList<>();
         Map<Integer, Object> map = new HashMap<>();
         for (int i = 0; i < 10; i++) {
-            listUserInfo.add(new UserInfo(Long.valueOf(Utils.randomNumber(0, 6)), "123456", new Date(), 12, "测试"));
-            map.put(Utils.randomNumber(0, 6), new UserInfo(Long.valueOf(Utils.randomNumber(0, 6)), "123456", new Date(), 12, "测试"));
+            listUserInfo.add(new UserInfo(Long.valueOf(Utils.randomNumber(0, 6)), "123456", new Date(),LocalDateTime.now(), 12, "测试"));
+            map.put(Utils.randomNumber(0, 6), new UserInfo(Long.valueOf(Utils.randomNumber(0, 6)), "123456", new Date(),LocalDateTime.now(), 12, "测试"));
         }
         //listString.forEach(e -> System.out.println(e));
         //map.forEach((k, v) -> System.out.println("key : " + k + " value : " + v));

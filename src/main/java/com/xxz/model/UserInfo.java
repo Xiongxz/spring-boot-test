@@ -2,9 +2,14 @@ package com.xxz.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.time.LocalDateTime;
 import java.util.Date;
-import javax.persistence.*;
-
+//如果需要jpa生成数据库表，则需要加@Entity
+@Entity
 @Table(name = "user_info")
 public class UserInfo {
     @Id
@@ -13,9 +18,13 @@ public class UserInfo {
 
     @Column(name = "pass_word")
     private String passWord;
+
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "start_date")
     private Date startDate;
+
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime endDate;
 
     @Column(name = "user_age")
     private Integer userAge;
@@ -26,10 +35,11 @@ public class UserInfo {
     public UserInfo() {
     }
 
-    public UserInfo(Long userId, String passWord, Date startDate, Integer userAge, String userName) {
+    public UserInfo(Long userId, String passWord, Date startDate, LocalDateTime endDate, Integer userAge, String userName) {
         this.userId = userId;
         this.passWord = passWord;
         this.startDate = startDate;
+        this.endDate = endDate;
         this.userAge = userAge;
         this.userName = userName;
     }
@@ -74,6 +84,14 @@ public class UserInfo {
      */
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
     }
 
     /**

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -69,6 +70,7 @@ public class UserController {
     public ZYJSONResult saveUser(@ModelAttribute UserInfo userInfo) {
         userInfo.setUserId(SidWorker.nextSid());
         userInfo.setStartDate(new Date());
+        userInfo.setEndDate(LocalDateTime.now());
         return ZYJSONResult.ok(this.userServiceImpl.saveUser(userInfo));
     }
 
