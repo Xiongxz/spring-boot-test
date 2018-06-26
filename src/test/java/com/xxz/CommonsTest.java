@@ -1,13 +1,12 @@
 package com.xxz;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.CollectionUtils;
-
 /**
  * @Auther: Administrator
  * @Date: 2018/6/21 0021 22:55
@@ -15,7 +14,7 @@ import org.springframework.util.CollectionUtils;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class StringTest {
+public class CommonsTest {
     @Test
     public void utilsStringTest() {
         String str = "测试-ss1";

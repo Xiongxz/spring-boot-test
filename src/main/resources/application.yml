@@ -17,10 +17,11 @@ spring:
 #spring boot jpa,可根据model创建相应的数据库表
  jpa:
    hibernate:
-     ddl-auto: update
+     ddl-auto: none
    show-sql: true
 
 #设置上传文件大小
+
  servlet:
    multipart:
      max-file-size: 10MB
