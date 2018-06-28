@@ -15,13 +15,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class RunnableTest {
     @Test
     public void runnableTest() {
+        RunnableTestDemo runnableTestDemo = new RunnableTestDemo();
+        new Thread(runnableTestDemo).start();
+
     }
-    class RunnableTestDemo implements Runnable{
+
+    class RunnableTestDemo implements Runnable {
 
         @Override
         public void run() {
             for (int i = 0; i < 6; i++) {
-                System.out.println( i);
+                System.out.println(Thread.currentThread().getName() + ":" + i);
             }
         }
     }
