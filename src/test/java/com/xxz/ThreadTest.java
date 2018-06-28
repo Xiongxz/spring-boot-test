@@ -14,7 +14,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class ThreadTest {
     @Test
-    public void threadTest(){
+    public void threadTest() {
+        ThreadTestDome threadTestDome1 = new ThreadTestDome();
+        threadTestDome1.start();
+        ThreadTestDome threadTestDome2 = new ThreadTestDome();
+        threadTestDome2.start();
+    }
 
+    class ThreadTestDome extends Thread {
+        @Override
+        public void run() {
+            super.run();
+            for (int i = 0; i < 5; i++) {
+                System.out.println(this.getName() + ":" + i);
+            }
+        }
     }
 }
