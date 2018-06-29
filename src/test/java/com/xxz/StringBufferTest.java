@@ -45,8 +45,6 @@ public class StringBufferTest {
          */
         System.out.println("对象 equals : " +u1.equals(u2));
         System.out.println(u1==u2);
-
-
     }
     static void cont(StringBuffer c, StringBuffer d) {
         c.append(d);
