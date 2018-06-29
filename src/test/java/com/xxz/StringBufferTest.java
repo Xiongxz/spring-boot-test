@@ -28,7 +28,6 @@ public class StringBufferTest {
         System.out.println(astr.equals(bstr));//String类重写equals方法，所以比较字符串的内容
         System.out.println(astr == bstr);//比较内存地址，String不可变，指向同一个地址返回true
 
-
         StringBuffer c = new StringBuffer("C");
         StringBuffer d = new StringBuffer("D");
 
