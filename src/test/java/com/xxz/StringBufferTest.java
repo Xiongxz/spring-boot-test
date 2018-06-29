@@ -37,7 +37,6 @@ public class StringBufferTest {
         cont(c, d);
         System.out.println(c + "." + d);
 
-
         UserInfo u1 = new UserInfo();
         UserInfo u2 = new UserInfo();
         /**
