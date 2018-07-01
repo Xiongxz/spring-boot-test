@@ -12,4 +12,5 @@ public interface MybatistestMapper extends Mapper<Mybatistest> {
     int saveMybatisPoJo(Mybatistest mybatistest);
 
     List<Mybatistest> selectByIdorName(@Param("id") Integer id,@Param("name") String name);
+
 }
