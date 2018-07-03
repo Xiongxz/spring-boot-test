@@ -5,10 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author Xiong xz
@@ -40,5 +37,31 @@ public class SortingTest {
         /*****out******/
         sortList.forEach(System.out::println);
         sortListString.forEach(System.out::println);
+    }
+    @Test
+    public void bubbleSort(){
+        int[] ints = {1,2,4,5,7,78,23,34,33,33,4,5,23,32,43,65,78,9809,9,0,-1,-12,12};
+        for (int i = 0; i < ints.length-1; i++) {
+            boolean flag = true;
+            for(int j = 0 ;j<ints.length-1-i;j++){
+                int temp ;
+                if(ints[j]>ints[j+1]){
+                    temp = ints[j];
+                    ints[j]=ints[j+1];
+                    ints[j+1]=temp;
+                    flag=false;
+                }
+            }
+            if(flag){
+                break;
+            }
+        }
+        System.out.println(Arrays.toString(ints));
+    }
+    @Test
+    public void ArraysSortTest(){
+        Integer[] ints = {1,2,3,56,7,3,-1,0,45};
+        Arrays.sort(ints,(x,y) ->x.compareTo(y));
+        System.out.println(Arrays.toString(ints));
     }
 }
