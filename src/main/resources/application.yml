@@ -11,7 +11,7 @@ spring:
    driver-class-name: com.mysql.jdbc.Driver
    url: jdbc:mysql://127.0.0.1:3306/spring-boot-test
    username: root
-   password: 123456
+   password: root
    type: com.alibaba.druid.pool.DruidDataSource
 
 #spring boot jpa,可根据model创建相应的数据库表
