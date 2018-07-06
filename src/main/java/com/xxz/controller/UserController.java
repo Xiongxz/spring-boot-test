@@ -6,6 +6,7 @@ import com.xxz.serviceimpl.UserServiceImpl;
 import com.xxz.util.SidWorker;
 import com.xxz.util.ZYJSONResult;
 import io.swagger.annotations.Api;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Auther: xxz
@@ -65,10 +67,28 @@ public class UserController {
         return mav;
     }
 
+    @PostMapping("/login")
+    @ResponseBody
+    public ZYJSONResult shiroLogin(@RequestParam(name = "username",required = true) String userName,@RequestParam(name = "password",required = true) String passWord){
+        if(StringUtils.isAnyBlank(userName,passWord))
+            return ZYJSONResult.errorException("userName or passWord is empty");
+
+        List<UserInfo> userInfo = this.userServiceImpl.getUserInfoByUserAndPassword(userName,passWord);
+        if(userInfo!=null){
+            return ZYJSONResult.ok();
+        }else{
+            return ZYJSONResult.errorMsg("用户名或密码错误");
+        }
+
+    }
+
     @PostMapping("/saveuser")
     @ResponseBody
     public ZYJSONResult saveUser(@ModelAttribute UserInfo userInfo) {
         userInfo.setUserId(SidWorker.nextSid());
+        userInfo.setUserName("admin");
+        userInfo.setPassWord("123456");
+        userInfo.setUserAge(18);
         userInfo.setStartDate(new Date());
         userInfo.setEndDate(LocalDateTime.now());
         return ZYJSONResult.ok(this.userServiceImpl.saveUser(userInfo));
@@ -79,6 +99,12 @@ public class UserController {
     public ZYJSONResult deleteUserAll(){
         Long[] id = {2018060321071967000L,2018060321061691900L,2018060321030124300L,2018060321061873700L};
         return ZYJSONResult.ok(this.userServiceImpl.deleteUserAll(id));
+    }
+
+    @GetMapping("/getuserinfobyid")
+    @ResponseBody
+    public ZYJSONResult getUserInfoById(@RequestParam(name = "userId",required = true)Long userId ){
+        return ZYJSONResult.ok(this.userServiceImpl.getUserInfoById(userId));
     }
 
     @GetMapping("/getuserall")

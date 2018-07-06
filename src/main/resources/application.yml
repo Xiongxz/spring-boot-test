@@ -17,7 +17,7 @@ spring:
 #spring boot jpa,可根据model创建相应的数据库表
  jpa:
    hibernate:
-     ddl-auto: none
+     ddl-auto: update
    show-sql: true
 
 #设置上传文件大小
@@ -44,5 +44,11 @@ spring:
 #  mappers:
 #    - tk.mybatis.mapper.common.Mapper
 #  not-empty: true
+
+shiro:
+  loginUrl: login.html
+  userNativeSessionManager: true
+  sessionManager:
+    sessionIdUrlRewritingEnabled: false
 
 

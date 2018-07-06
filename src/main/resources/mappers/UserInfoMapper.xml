@@ -8,9 +8,25 @@
     <id column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="pass_word" jdbcType="VARCHAR" property="passWord" />
     <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
     <result column="user_age" jdbcType="INTEGER" property="userAge" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
   </resultMap>
+
+  <select id="getUserInfoById" resultType="com.xxz.model.UserInfo">
+      SELECT
+      <include refid="BaseResultMap"></include>
+      FROM
+      WHERE user_id = #{userId}
+  </select>
+
+  <select id="getUserInfoByUserAndPassword" resultType="com.xxz.model.UserInfo">
+      SELECT
+      <include refid="BaseResultMap"></include>
+      FROM
+      WHERE user_name = #{userName}
+      AND pass_word = #{passWord}
+  </select>
 
   <delete id="deleteUserAll" parameterType="java.util.ArrayList">
       DELETE FROM user_info WHERE user_id IN

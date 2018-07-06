@@ -13,7 +13,7 @@
     function  login() {
         console.log("进入登录ajax");
         $.ajax({
-            url: "/springboot/userlogin",
+            url: "/springboot/login",
             type: 'POST',
             dataTypt:'json',
             data:{
@@ -28,7 +28,7 @@
     }
 </script>
 <body>
-<form method="post" action="/springboot/userlogin">
+<form method="post" action="/springboot/login">
     <input id="username" name="username" typt="text" value=""/>
     <input id="password" name="password" typt="text" value="">
     <input type="submit" value="登录测试">

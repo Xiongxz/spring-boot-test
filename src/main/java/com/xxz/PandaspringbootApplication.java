@@ -13,7 +13,6 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @SpringBootApplication
 @MapperScan("com.xxz.mapper")//使用通用mapper注解
-
 public class PandaspringbootApplication {
     public static void main(String[] args) {
         SpringApplication.run(PandaspringbootApplication.class, args);

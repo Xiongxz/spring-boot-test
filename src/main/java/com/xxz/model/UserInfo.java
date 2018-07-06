@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.Date;
 //如果需要jpa生成数据库表，则需要加@Entity
-@Entity
+//@Entity
 @Table(name = "user_info")
 public class UserInfo {
     @Id

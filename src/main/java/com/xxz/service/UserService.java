@@ -12,7 +12,13 @@ import java.util.List;
  */
 @Service
 public interface UserService {
+    UserInfo getUserInfoById(Long userId);
+
     List<UserInfo> selectAll();
+
     int deleteUserAll(Long[] id);
+
     int saveUser(UserInfo userInfo);
+
+    List<UserInfo> getUserInfoByUserAndPassword(String userName, String passWord);
 }

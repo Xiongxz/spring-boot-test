@@ -23,6 +23,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserInfoMapper userInfoMapper;
 
+    @Override
+    public UserInfo getUserInfoById(Long userId) {
+        return this.userInfoMapper.getUserInfoById(userId);
+    }
+
     /**
      * 通用mapper
      *
@@ -42,5 +47,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int saveUser(UserInfo userInfo) {
         return this.userInfoMapper.insert(userInfo);
+    }
+
+    @Override
+    public List<UserInfo> getUserInfoByUserAndPassword(String userName, String passWord) {
+        return this.userInfoMapper.getUserInfoByUserAndPassword(userName,passWord);
     }
 }
