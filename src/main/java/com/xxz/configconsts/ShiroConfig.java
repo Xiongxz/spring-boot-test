@@ -21,13 +21,13 @@ public class ShiroConfig {
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
 
         // logged in users with the 'admin' role
-        //chainDefinition.addPathDefinition("/admin/**", "authc, roles[admin]");
+        chainDefinition.addPathDefinition("/admin/**", "authc, roles[admin]");
 
         // logged in users with the 'document:read' permission
-        //chainDefinition.addPathDefinition("/docs/**", "authc, perms[document:read]");
+        chainDefinition.addPathDefinition("/docs/**", "authc, perms[document:read]");
 
         // all other paths require a logged in user
-        //chainDefinition.addPathDefinition("/**", "authc");
+        chainDefinition.addPathDefinition("/**", "authc");
         return chainDefinition;
     }
 

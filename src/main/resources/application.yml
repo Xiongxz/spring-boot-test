@@ -40,15 +40,15 @@ mybatis:
    configuration:
      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #通用mapper
-mapper:
-  mappers:
-    - tk.mybatis.mapper.common.Mapper
-  not-empty: true
+#mapper:
+#  mappers:
+#    - tk.mybatis.mapper.common.Mapper
+#  not-empty: true
 
-shiro:
-  loginUrl: login.html
-  userNativeSessionManager: true
-  sessionManager:
-    sessionIdUrlRewritingEnabled: false
+#shiro:
+#  loginUrl: login.html
+#  userNativeSessionManager: true
+#  sessionManager:
+#    sessionIdUrlRewritingEnabled: false
 
 

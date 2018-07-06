@@ -10,7 +10,7 @@ public interface UserInfoMapper extends Mapper<UserInfo> {
 
     UserInfo getUserInfoById(@Param("userId") Long userId);
 
-    List<UserInfo> getUserInfoByUserAndPassword(@Param("userName") String userName, @Param("passWord") String passWord);
+    UserInfo getUserInfoByUserAndPassword(@Param("userName") String userName, @Param("passWord") String passWord);
 
     int deleteUserAll(Long[] id);
 }

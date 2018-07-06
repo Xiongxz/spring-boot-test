@@ -20,5 +20,5 @@ public interface UserService {
 
     int saveUser(UserInfo userInfo);
 
-    List<UserInfo> getUserInfoByUserAndPassword(String userName, String passWord);
+    UserInfo getUserInfoByUserAndPassword(String userName, String passWord);
 }

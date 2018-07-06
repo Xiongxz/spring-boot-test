@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxz.mapper.UserInfoMapper">
+
   <resultMap id="BaseResultMap" type="com.xxz.model.UserInfo">
-    <!--
-      WARNING - @mbg.generated
-    -->
     <id column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="pass_word" jdbcType="VARCHAR" property="passWord" />
     <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
@@ -13,17 +11,21 @@
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
   </resultMap>
 
+    <sql id="usercolumn">
+        user_id as userId,pass_word as passWord,start_date as startDate,end_date as endDate,user_age as userAge,user_name as userName
+    </sql>
+
   <select id="getUserInfoById" resultType="com.xxz.model.UserInfo">
       SELECT
-      <include refid="BaseResultMap"></include>
+      <include refid="usercolumn"></include>
       FROM
       WHERE user_id = #{userId}
   </select>
 
   <select id="getUserInfoByUserAndPassword" resultType="com.xxz.model.UserInfo">
       SELECT
-      <include refid="BaseResultMap"></include>
-      FROM
+      <include refid="usercolumn"></include>
+      FROM user_info
       WHERE user_name = #{userName}
       AND pass_word = #{passWord}
   </select>

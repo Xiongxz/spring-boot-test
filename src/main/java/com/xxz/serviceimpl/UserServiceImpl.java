@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserInfo> getUserInfoByUserAndPassword(String userName, String passWord) {
+    public UserInfo getUserInfoByUserAndPassword(String userName, String passWord) {
         return this.userInfoMapper.getUserInfoByUserAndPassword(userName,passWord);
     }
 }

@@ -4,9 +4,14 @@ import com.xxz.configconsts.ConfigConsts;
 import com.xxz.model.UserInfo;
 import com.xxz.serviceimpl.UserServiceImpl;
 import com.xxz.util.SidWorker;
+import com.xxz.util.Utils;
 import com.xxz.util.ZYJSONResult;
 import io.swagger.annotations.Api;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +24,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @Auther: xxz
  * @Date: 2018/5/26 0026 14:11
  * @Description:login interceptor variable
  */
-@Api(value = "用户接口",tags = "用户接口",description = "包含用户登录，CRUD")
+@Api(value = "用户接口", tags = "用户接口", description = "包含用户登录，CRUD")
 @Controller
 public class UserController {
 
@@ -69,17 +73,18 @@ public class UserController {
 
     @PostMapping("/login")
     @ResponseBody
-    public ZYJSONResult shiroLogin(@RequestParam(name = "username",required = true) String userName,@RequestParam(name = "password",required = true) String passWord){
-        if(StringUtils.isAnyBlank(userName,passWord))
+    public ZYJSONResult shiroLogin(@RequestParam(name = "username", required = true) String userName, @RequestParam(name = "password", required = true) String passWord) {
+        if (StringUtils.isAnyBlank(userName, passWord))
             return ZYJSONResult.errorException("userName or passWord is empty");
 
-        List<UserInfo> userInfo = this.userServiceImpl.getUserInfoByUserAndPassword(userName,passWord);
-        if(userInfo!=null){
+        UsernamePasswordToken token = new UsernamePasswordToken(userName, passWord);
+        Subject subject = SecurityUtils.getSubject();
+        try {
+            subject.login(token);
             return ZYJSONResult.ok();
-        }else{
-            return ZYJSONResult.errorMsg("用户名或密码错误");
+        } catch (AuthenticationException e) {
+            return ZYJSONResult.errorMsg(e.getMessage());
         }
-
     }
 
     @PostMapping("/saveuser")
@@ -87,7 +92,7 @@ public class UserController {
     public ZYJSONResult saveUser(@ModelAttribute UserInfo userInfo) {
         userInfo.setUserId(SidWorker.nextSid());
         userInfo.setUserName("admin");
-        userInfo.setPassWord("123456");
+        userInfo.setPassWord(Utils.getUUID());
         userInfo.setUserAge(18);
         userInfo.setStartDate(new Date());
         userInfo.setEndDate(LocalDateTime.now());
@@ -96,14 +101,14 @@ public class UserController {
 
     @DeleteMapping("/deleteuserall")
     @ResponseBody
-    public ZYJSONResult deleteUserAll(){
-        Long[] id = {2018060321071967000L,2018060321061691900L,2018060321030124300L,2018060321061873700L};
+    public ZYJSONResult deleteUserAll() {
+        Long[] id = {2018070615292517800L, 2018070615321764100L, 2018070615321893500L, 2018070615322007500L};
         return ZYJSONResult.ok(this.userServiceImpl.deleteUserAll(id));
     }
 
     @GetMapping("/getuserinfobyid")
     @ResponseBody
-    public ZYJSONResult getUserInfoById(@RequestParam(name = "userId",required = true)Long userId ){
+    public ZYJSONResult getUserInfoById(@RequestParam(name = "userId", required = true) Long userId) {
         return ZYJSONResult.ok(this.userServiceImpl.getUserInfoById(userId));
     }
 
