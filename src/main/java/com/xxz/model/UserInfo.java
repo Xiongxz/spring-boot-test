@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.Date;
 //如果需要jpa生成数据库表，则需要加@Entity
-//@Entity
+@Entity
 @Table(name = "user_info")
 public class UserInfo {
     @Id
@@ -24,6 +24,7 @@ public class UserInfo {
     private Date startDate;
 
     @JsonFormat(locale="zh", timezone="GMT+8", pattern="yyyy-MM-dd HH:mm:ss")
+    @Column(name = "end_date")
     private LocalDateTime endDate;
 
     @Column(name = "user_age")
