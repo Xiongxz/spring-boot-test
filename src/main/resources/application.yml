@@ -1,6 +1,6 @@
 #端口和项目根路径
 server:
-  port: 8989
+  port: 9999
   servlet:
     context-path: /springboot/
 
@@ -45,10 +45,10 @@ mybatis:
 #    - tk.mybatis.mapper.common.Mapper
 #  not-empty: true
 
-#shiro:
-#  loginUrl: login.html
-#  userNativeSessionManager: true
-#  sessionManager:
-#    sessionIdUrlRewritingEnabled: false
+shiro:
+  loginUrl: login.html
+  userNativeSessionManager: false
+  sessionManager:
+    sessionIdUrlRewritingEnabled: false
 
 
