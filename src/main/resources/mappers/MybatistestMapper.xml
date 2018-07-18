@@ -26,7 +26,7 @@
   close:遍历出所有结果拼接一个结束的字符
   index:索引。遍历list的时候是index就是索引，item就是当前值
   遍历map的时候index表示的就是map的key，item就是map的值
-  #{变量名}就能取出变量的值也就是当前遍历出的元素
+  #{变量名}就能取出变量的值也就是当前遍历出的元 素
   -->
   <insert id="batchMybatisTest" parameterType="java.util.List" useGeneratedKeys="true">
     INSERT INTO mybatistest
