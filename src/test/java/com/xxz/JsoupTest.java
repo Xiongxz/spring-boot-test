@@ -103,7 +103,7 @@ public class JsoupTest {
         //几号
         Elements elements3 = elements1.select("h1");
         String number = elements3.get(0).text();
-        System.out.println("日期" + number);
+        System.out.println("日期 " + number);
 
         // 天气
         Elements elements4 = elements1.select("[class=wea]");
